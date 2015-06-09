@@ -1,6 +1,20 @@
 function hsi = rgb2hsi(rgb)
-%RGB2HSI Summary of this function goes here
-%   Detailed explanation goes here
+%RGB2HSI Converts an RGB image to HSI.
+%   HSI = RGB2HSI(RGB) converts an RGB image to HSI. The input image
+%   is assumed to be of size M-by-N-by-3, where the third dimension
+%   accounts for three image planes: red, green, and blue, in that
+%   order. If all RGB component images are equal, the HSI conversion
+%   is undefined. The input image can be of class double (with values
+%   in the range [0, 1]), uint8, or uint16. 
+%
+%   The output image, HSI, is of class double, where:
+%     hsi(:, :, 1) = hue image normalized to the range [0, 1] by
+%                    dividing all angle values by 2*pi. 
+%     hsi(:, :, 2) = saturation image, in the range [0, 1].
+%     hsi(:, :, 3) = intensity image, in the range [0, 1].
+
+%   Copyright 2015 Fan Yang
+%   $Revision: 0.1 $  $Date: 2015/06/09 09:57:04 $
 
 % decomposite rgb into r, g, b
 rgb = im2double(rgb);
@@ -29,7 +43,7 @@ s = 1 - s_num ./ s_den;
 h(s == 0) = 0;
 
 % compute intensity
-i = (r + g + b) ./ 3;
+i = (r + g + b) / 3;
 
 % combine h, s, and i
 hsi = zeros(rows, cols, layers);
