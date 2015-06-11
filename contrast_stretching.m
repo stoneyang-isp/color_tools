@@ -21,7 +21,7 @@ if r1 > r2
 end
 
 if r1 == r2 % is thresholding?
-    disp('Thresholding mode. ');
+    disp('Binary thresholding mode. ');
     % case 1
     idx = find(img <= r1);
     imgOut(idx) = s1;
@@ -29,6 +29,7 @@ if r1 == r2 % is thresholding?
     idx = find(img > r2);
     imgOut(idx) = s2;
 else
+    disp('Stretching mode.');
     % case 1
     slope1 = s1 / r1;
     idx = find(img <= r1);
